@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<center>
+    <h2 class="mb-3 h2 text-muted">
+        My  Appointments
+    </h2>
+    <hr width="50%">
+</center>
+<div class="row">
+    {% for appointment_obj in appointments %}
+    <div class="form-group col-md-6 mb-4">
+        <ul class="list-group">
+            {% if appointment_obj.get_appointment_status %}
+            <li class="list-group-item active" aria-current="true">
+                {{appointment_obj.time}}
+            </li>
+            {% else %}
+              <li class="list-group-item list-group-item-danger" aria-current="true">
+                {{appointment_obj.time}}(expired)
+            </li>
+            
+            {% endif %}
+            <li class="list-group-item"></li>
+            <li class="list-group-item">
+                <span class="fw-bold float-left">Is diabetes</span>
+                <span class="fw-bold float-right" style="float:right;">
+                {% if appointment_obj.is_diabetes %}
+                <button type="button" class="btn btn-success  btn-sm px-3 ">
+                <i class="fas fa-check"></i>
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-danger btn-sm px-3  ">
+                <i class="fas fa-times"></i>
+                </button>
+                {% endif %} 
+                </span>
+            </li>
+            <li class="list-group-item">
+                <span class="fw-bold float-left">Previous Treatment Taken</span>
+                <span class="fw-bold float-right" style="float:right;">
+                                {% if appointment_obj.previous_treatment_taken %}
+                <button type="button" class="btn btn-success  btn-sm px-3 ">
+                <i class="fas fa-check"></i>
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-danger btn-sm px-3  ">
+                <i class="fas fa-times"></i>
+                </button>
+                {% endif %} 
+            </span>
+            </li>
+            <li class="list-group-item">
+                <span class="fw-bold float-left">Description </span>
+                <span class="fw-bold float-right" style="float:right;">{{appointment_obj.description}}</span>
+            </li>
+            <li class="list-group-item">
+                <span class="fw-bold float-left">Symptoms You Have </span>
+                <span class="fw-bold float-right" style="float:right;">
+                {% for symptoms in appointment_obj.symptoms.all %}    
+                <span class="badge btn-dark">{{symptoms.title}}</span>
+                {% endfor %}
+                </span>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

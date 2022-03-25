@@ -1,0 +1,105 @@
+{% load static %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <img src="{% static 'favicon1.ico' %}" />
+        Sablok Pharma
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url "home" %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "about" %}">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "book_appointment" %}">Book Appointments</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="{% url "treatments" %}">Treatments</a>
+        </li>        
+         <li class="nav-item">
+          <a class="nav-link" href="{% url "my_appointments" %}">My Appointments</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+    <div class="d-flex align-items-center">
+
+      {% if request.user.is_authenticated %}
+         <!-- Avatar -->
+         <div class="dropdown">
+           <a
+             class="dropdown-toggle d-flex align-items-center hidden-arrow"
+             href="#"
+             id="navbarDropdownMenuAvatar"
+             role="button"
+             data-mdb-toggle="dropdown"
+             aria-expanded="false"
+           >
+             <img
+               src="https://ui-avatars.com/api/?name={{user.first_name}}+{{user.last_name}}&size=512&bold=true&background=random"
+               class="rounded-circle"
+               height="40"
+               alt="image of person"
+               loading="lazy"
+             />
+           </a>
+           <ul
+             class="dropdown-menu dropdown-menu-end"
+             aria-labelledby="navbarDropdownMenuAvatar"
+           >
+                 <li class="dropdown-item">
+               
+          Hello <b> {{request.user.get_full_name}}</b>
+             </li>
+             <li>
+               <a class="dropdown-item" href="{% url 'account_profile' %}">My profile</a>
+             </li>
+             <li>
+               <a class="dropdown-item" href="{% url "account_logout" %}">Logout</a>
+             </li>
+           </ul>
+         </div>
+         {% else %}
+         <a href="{% url "account_login" %}">
+            <button type="button" class="btn btn-secondary px-3 me-2">
+               Login
+            </button>
+        </a>
+         <a href="{% url "account_signup" %}">
+           <button type="button" class="btn btn-primary me-3">
+             Sign up 
+           </button>
+        </a>
+
+       {% endif %}
+
+
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+

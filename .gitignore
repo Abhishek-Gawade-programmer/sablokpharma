@@ -1,0 +1,8 @@
+*/__pycache__/
+media_root/
+.env
+env/
+db.sqlite3
+db.sqlite3-journal
+test.json
+.env

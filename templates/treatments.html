@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content  %}
+
+<div class="container my-4">
+   <i>
+      <h6>Sex therapy is a specialized area of psychotherapy. At the Sablok Pharma, all of our therapists are clinically trained in both couples therapy and comprehensive sexual health. We only offer professional sex therapy, using a measured approach for assessing issues, understanding a diagnosis, and creating a comprehensive treatment plan.</h6>
+   </i>
+</div>
+<br>
+<div class="container">
+   <img src="https://theintimacyinstitute.org/wp-content/uploads/2012/11/sexlessmarriage.jpeg" width="300">
+</div>
+<br>
+<br>
+<div class="container">
+   Common questions asked include:
+   <br>
+   <br>
+   Do you feel hopeless in a sexless relationship?
+   <br>
+   <br>
+   Do you want to orgasm more easily?
+   <br>
+   <br>
+   Does your sexual over-activity jeopardize your relationship?
+   <br>
+   <br>
+   Does your sexual past haunt your current life?
+   <br>
+   <br>
+   Do you want to find more meaningful and passionate ways to reconnect with your partner?
+   <br>
+   <br>
+   If you answered YES to any of the above, sex therapy is for you.
+   <br>
+   <br>
+   For sexual dysfunctions, we teach specific behavioral exercises to address sexual concerns so that clients learn how to be students of their own and their partner’s sexuality. Because the mind cannot be separated from the body, we integrate somatic awareness. Learning how to be intelligently embodied helps us connect with our desire and arousal to become more sexually alive.
+   <br>
+   <br>
+   Both individual and couples sessions are educational with techniques and tools to help clients develop a more satisfying use of their personal capacities. Please note there is never any nudity or sexual behavior in session. We send clients home with practical, homework exercises, often supplemented with relevant readings and/or videos.
+   <br>
+   <br>
+   Being human means we are sexual beings with complex sex histories. These sex histories often include lifelong family and societal messages that can affect our sexual functioning, body image, and relationships. Sex therapy can help a person explore his/her past sex history and find solutions to enhance the present and future.
+   <br>
+   <br>
+   For individuals, sex therapy can help heal a sexually distressing past, facilitate sexual function, or explore psychological blocks preventing full expression of emotional and/or sexual intimacy in a relationship. For couples, sex therapy can help heal infidelity, enhance sexual and emotional communication, find new ways to reconnect, or explore alternative sexual expressions.
+</div>
+<div class="container my-4 mx-9">
+   <h6><i>"Our mission at the Sablok Pharma is to give all people permission for pleasure by promoting sexual health and healing. We offer comprehensive counseling, experiential education, and culturally competent training services to help each client deepen their connections with themselves, their partners, and their communities"</i></h6>
+   <br>
+   <img src="https://theintimacyinstitute.org/wp-content/uploads/2012/11/sex-ed-2.jpg" width="250">
+</div>
+<center>
+   <i>
+      <h2>Treatments we offer</h2>
+   </i>
+   <hr>
+</center>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+   {% for obj in treatment_objs %}
+     <div class="col">
+       <div class="card h-100">
+
+         <img src="{{obj.images.all.0.image.url}}" style="height:300px" class="card-img-top" alt="Skyscrapers"/>
+         <div class="card-body">
+           <h5 class="card-title">
+            <a href="#">
+            {{obj.title}}
+           </a>
+        </h5>
+           <p class="card-text">
+             {{obj.description}}
+           </p>
+         </div>
+         <div class="card-footer">
+           <small class="text-muted">{{obj.updated|date}}</small>
+         </div>
+       </div>
+     </div>
+  {% endfor %}
+
+</div>
+{% endblock content  %}
